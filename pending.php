@@ -148,7 +148,7 @@
 				$i = $i + 1;
 			}
 			$output .= '</table>';
-			$output .= '<input type="submit" value="Update Information"><hr></form>';
+			$output .= '<input type="submit" value="Update Information"></form>';
 		} else {
 			$output = '<b>There are currently 0 pending applications.</b>';
 		}

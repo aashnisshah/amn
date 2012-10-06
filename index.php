@@ -1,4 +1,9 @@
 <?php 
+	if (!file_exists(db.php)) {
+		header('Location: config.php');
+		exit;
+	}
+	
 	require_once('db.php');
 	
 	if((isset($_SESSION['status'])) == 'active'){

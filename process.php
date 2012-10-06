@@ -57,9 +57,7 @@
 
 
 	echo $header.
-		'<h1>Output from the Form</h1>'.
-			
-			$menu;
+		'<h1>Output from the Form</h1>';
 		
 		
 		if ($error != false){

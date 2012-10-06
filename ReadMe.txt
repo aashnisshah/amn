@@ -20,6 +20,8 @@ To install this script, follow these steps:
 	** Note: Host can often be left as "localhost" **
 4. Hit submit. If no problems occured, you will have set up your site and will now be able to log in
 
+** If you are having problems getting AMN to work, you may need to activate the cURL settings option **
+
 ************************************************************************************
 *						         How To Use AMN						         	   *
 ************************************************************************************
