@@ -1,0 +1,1 @@
+<?php  $who = all; $order = rand; $how = siteButton; $num = 0; include('/home/projects/public_html/affies/generatecodes.php'); ?>
