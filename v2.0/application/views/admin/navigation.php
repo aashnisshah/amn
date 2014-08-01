@@ -8,4 +8,7 @@
     <li>
         <a href="../links/index">Link Management</a>
     </li>
+    <li>
+        <a href="../categories/index">Categories Management</a>
+    </li>
 </ul>
