@@ -3,6 +3,6 @@
         Welcome <?php echo $username; ?>!
     </li>
     <li>
-        <a href="">Link</a>
+        <a href="../admin/info">Admin Information</a>
     </li>
 </ul>

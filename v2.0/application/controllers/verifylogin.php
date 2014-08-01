@@ -8,7 +8,8 @@ class Verifylogin extends CI_Controller {
         $this->load->model('admin_model', 'admin_model', TRUE);
     }
 
-    function index() {        $this->form_validation->set_rules('username', 'Username',
+    function index() {
+        $this->form_validation->set_rules('username', 'Username',
                 'trim|required|xss_clean');
         $this->form_validation->set_rules('password', 'Password',
                 'trim|required|css_clean|callback_check_database');
@@ -30,6 +31,8 @@ class Verifylogin extends CI_Controller {
             foreach($result as $row) {
                 $sess_array = array('id' => $row->id, 'username' => $row->username);
                 $this->session->set_userdata('logged_in', $sess_array);
+                $this->session->set_userdata('id', $row->id);
+                $this->session->set_userdata('username', $row->username);
             }
         return TRUE;
         } else {
