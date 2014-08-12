@@ -1,0 +1,19 @@
+.ourcenter {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top:60px;
+  max-width: 90%;
+}
+
+.loginform {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 600px;
+}
+
+.linkdisplay {
+    max-height:100px;
+    max-width:100px;
+}

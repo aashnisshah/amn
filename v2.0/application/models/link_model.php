@@ -13,7 +13,45 @@ class Link_model extends CI_Model {
         return $this->db->insert("links", array('url' => $data['url'],
 				                                'name' => $data['name'],
 								 			    'groups' => $data['groups'],
-								 			    'image' => $data['image']));
+								 			    'image' => $data['image'],
+                                                'description' => $data['description']));
     }
+
+    /**
+     * Get all links from the database.
+     */
+    function get_all_links() {
+        $query = $this->db->get('links');
+        $data = $query->result_array();
+        return $data;
+    }
+
+    /**
+     * Get all accepted links from the database.
+     */
+    function get_accepted_links() {
+        $query = $this->db->get_where('links',array('status' => 'accepted'));
+        $data = $query->result_array();
+        return $data;
+    }
+
+    /**
+     * Get all rejected links from the database.
+     */
+    function get_rejected_links() {
+        $query = $this->db->get_where('links',array('status' => 'rejected'));
+        $data = $query->result_array();
+        return $data;
+    }
+
+    /**
+     * Get all pending links from the database.
+     */
+    function get_pending_links() {
+        $query = $this->db->get_where('links',array('status' => 'pending'));
+        $data = $query->result_array();
+        return $data;
+    }
+
 }
 ?>

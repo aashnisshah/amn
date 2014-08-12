@@ -13,10 +13,13 @@
     echo form_input("name");
     echo '<br>';
     echo form_label("Groups: ");
-    echo form_input("groups");
+    echo form_multiselect('groups[]', $categories);
     echo '<br>';
     echo form_label("Image: ");
     echo form_input("image");
+    echo '<br>';
+    echo form_label("Description: ");
+    echo form_textarea("description");
     echo '<br>';
     echo form_submit("","Add Link");
     echo form_close();
