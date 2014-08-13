@@ -13,7 +13,11 @@
                     echo '<td>' . $link['id'] . '<td>';
                     echo '<td>' . $link['name'] . '<br>';
                         echo '<a href="' . $link['url'] . '" target="_blank">' . $link['url'] . '</a><br>';
-                        echo '<span class="label label-info">' . $link['groups'] . '</span>';
+                        $groupsCombined = $link['groups'];
+                        $groupsSplit = explode(" ", $groupsCombined);
+                        foreach($groupsSplit as $group) {
+                            echo '<span class="label label-info">' . $group . '</span> ';
+                        }
                     echo '</td>';
                     echo '<td>' . $link['description'] . '</td>';
                     echo '<td><img class="linkdisplay" src="' . $link['image'] . '"></td>';

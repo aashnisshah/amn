@@ -33,15 +33,15 @@ class Links extends CI_Controller {
      */
     function newLink() {
         $groupList = "";
-
-        if($this->input->post('groups') !== "") {
-            // foreach($this->input->post('groups') as $group) {
-            //     if(strlen($groupList) == 0) {
-            //         $groupList = $group . " ";
-            //     } else {
-            //         $groupList = $groupList . " " . $group;
-            //     }
-            // }
+        $groups = $this->input->post('groups');
+        if($groups[0] != "") {
+            foreach($groups as $group) {
+                if(strlen($groupList) == 0) {
+                    $groupList = $group . " ";
+                } else {
+                    $groupList = $groupList . " " . $group;
+                }
+            }
         }
 
         $data['url'] = $this->input->post('url');

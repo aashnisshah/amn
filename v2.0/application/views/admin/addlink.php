@@ -28,7 +28,9 @@
         <div class="form-group">
             <label for="groups" class="col-sm-2 control-label">Groups: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="groups" placeholder="">
+                <?php
+                        echo form_multiselect('groups[]', $categories, array(), 'class="form-control"');
+                ?>
             </div>
         </div>
         <div class="form-group">
