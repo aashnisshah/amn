@@ -18,10 +18,11 @@
         <script type="text/javascript" src="js/flatui-radio.js"></script>
         <script type="text/javascript" src="js/jquery.tagsinput.js"></script>
         <script type="text/javascript" src="js/jquery.placeholder.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     </head>
     <body>
 
-        <div class="container">
+        <div class="container ourcenter">
             <nav class="navbard navbar-inverse navbar-embossed navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
@@ -41,11 +42,6 @@
                     </div>
                 </div>
             </nav>
-        </div>
-
-        <div class="ourcenter">
-
-            <div class="container-fluid">
 
                 This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area. This is the content area.
 
@@ -84,7 +80,7 @@
 
                 <h2>New Link Form</h2>
 
-                <div class="loginform">
+                <div class="newlink">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="url" class="col-sm-2 control-label">Link URL: </label>
@@ -219,8 +215,6 @@
                     </tr>
 
                 </table>
-
-            </div>
 
         </div>
 

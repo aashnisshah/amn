@@ -17,3 +17,12 @@
     max-height:100px;
     max-width:100px;
 }
+
+.defaultHide {
+    display:none;
+}
+
+#addLinkButton {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

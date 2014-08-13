@@ -21,10 +21,11 @@ class Links extends CI_Controller {
             $data['status'] = $status;
         }
 
-        // $this->load->view('layout/header');
-        // $this->load->view('layout/navbar');
+        $this->load->view('layout/header');
+        $this->load->view('layout/navbar');
         $this->load->view('admin/addlink', $cat);
         $this->load->view('admin/links', $data);
+        $this->load->view('layout/footer');
     }
 
     /**
@@ -32,12 +33,15 @@ class Links extends CI_Controller {
      */
     function newLink() {
         $groupList = "";
-        foreach($this->input->post('groups') as $group) {
-            if(strlen($groupList) == 0) {
-                $groupList = $group . " ";
-            } else {
-                $groupList = $groupList . " " . $group;
-            }
+
+        if($this->input->post('groups') !== "") {
+            // foreach($this->input->post('groups') as $group) {
+            //     if(strlen($groupList) == 0) {
+            //         $groupList = $group . " ";
+            //     } else {
+            //         $groupList = $groupList . " " . $group;
+            //     }
+            // }
         }
 
         $data['url'] = $this->input->post('url');
@@ -47,6 +51,7 @@ class Links extends CI_Controller {
         $data['description'] = $this->input->post('description');
         $this->link_model->add_new_link($data);
         $data['status'] = "success";
+
         redirect('links/index', $data);
     }
 
