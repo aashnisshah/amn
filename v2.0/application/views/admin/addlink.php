@@ -3,25 +3,50 @@
     if(isset($message)) {
         echo $message;
     }
-    echo '<h2>Links</h2>';
-    echo validation_errors();
-    echo form_open('links/newLink');
-    echo form_label("Link URL: ");
-    echo form_input("url");
-    echo '<br>';
-    echo form_label("Link Name: ");
-    echo form_input("name");
-    echo '<br>';
-    echo form_label("Groups: ");
-    echo form_multiselect('groups[]', $categories);
-    echo '<br>';
-    echo form_label("Image: ");
-    echo form_input("image");
-    echo '<br>';
-    echo form_label("Description: ");
-    echo form_textarea("description");
-    echo '<br>';
-    echo form_submit("","Add Link");
-    echo form_close();
 
 ?>
+
+<button id="addLinkButton" class="btn btn-info btn-lg" type="button">Add A New Link</button>
+
+<div id="addNewLink" class="newlink defaultHide" display="none">
+    <?php
+        $attributes = array('class' => 'form-horizontal');
+        echo form_open('links/newLink', $attributes);
+    ?>
+        <div class="form-group">
+            <label for="url" class="col-sm-2 control-label">Link URL: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="url" placeholder="http://">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Link Name: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="name" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="groups" class="col-sm-2 control-label">Groups: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="groups" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="image" class="col-sm-2 control-label">Image: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="image" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="description" placeholder="Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="">
+                <button type="submit" class="btn btn-default">Add New Link</button>
+            </div>
+        </div>
+    </form>
+</div>
