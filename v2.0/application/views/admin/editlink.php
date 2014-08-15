@@ -72,9 +72,6 @@
         <div class="form-group">
             <div class="">
                 <button type="submit" class="btn btn-success">Update Link Information</button>
-                <a href="<?php echo site_url("links/delete/" . $link["id"]) ?>">
-                    <button class="btn btn-danger">Delete Link</button>
-                </a>
             </div>
         </div>
     </form>
