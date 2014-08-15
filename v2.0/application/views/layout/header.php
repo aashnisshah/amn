@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Candystore</title>
+        <title>The Missing Link</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="<?php echo base_url();?>css/bootstrap.css" rel="stylesheet">
         <link href="<?php echo base_url();?>css/flat-ui.css" rel="stylesheet">
