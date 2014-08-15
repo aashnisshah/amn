@@ -17,7 +17,10 @@ class Admin extends CI_Controller {
      */
     function info() {
         $data['admin_info'] = $this->admin_model->get_all_admin_info($this->session->userdata['id']);
+        $this->load->view('layout/header');
+        $this->load->view('layout/navbar');
         $this->load->view('admin/info', $data);
+        $this->load->view('layout/footer');
     }
 
     /**
@@ -42,7 +45,7 @@ class Admin extends CI_Controller {
 
         $this->admin_model->update_admin_info($admin_info_data);
         $this->admin_model->update_login_info($login_info_data);
-        
+
         $this->session->set_userdata('username', $this->input->post('username'));
 
         $data['message'] = "Success: Your information has been successfully updated.";
