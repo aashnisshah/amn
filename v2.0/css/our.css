@@ -26,3 +26,12 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.editformdisplay {
+    max-height:100px;
+    max-width:100px;
+}
+
+.margin-right{
+    margin-right:8px;
+}

@@ -42,12 +42,12 @@
         <div class="form-group">
             <label for="description" class="col-sm-2 control-label">Description: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="description" placeholder="Email">
+                <input type="text" class="form-control" name="description" placeholder="">
             </div>
         </div>
         <div class="form-group">
             <div class="">
-                <button type="submit" class="btn btn-default">Add New Link</button>
+                <button type="submit" class="btn btn-success">Add New Link</button>
             </div>
         </div>
     </form>

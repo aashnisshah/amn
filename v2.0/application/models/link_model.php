@@ -14,6 +14,7 @@ class Link_model extends CI_Model {
 				                                'name' => $data['name'],
 								 			    'groups' => $data['groups'],
 								 			    'image' => $data['image'],
+                                                'status' => $data['status'],
                                                 'description' => $data['description']));
     }
 
@@ -49,6 +50,23 @@ class Link_model extends CI_Model {
         $data = array('status' => $newStatus);
         $this->db->where('id', $id);
         $this->db->update('links', $data);
+    }
+
+    /**
+     *
+     */
+    function update_link_information($id, $data) {
+        $this->db->where('id', $id);
+        $this->db->update('links', $data);
+    }
+
+    /**
+     * Get link information for the link with $id
+     */
+    function get_link_details($id){
+        $query = $this->db->get_where('links', array('id' => $id));
+        $data = $query->result_array();
+        return $data;
     }
 
 }

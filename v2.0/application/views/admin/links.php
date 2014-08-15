@@ -41,6 +41,7 @@
             <td>Link Description</td>
             <td>Current Status</td>
             <td>Update Status</td>
+            <td>Edit Link</td>
             <td>Delete Link</td>
         </th>
 
@@ -64,6 +65,7 @@
                     echo '<td><a href="' . site_url("links/updateStatus/" . $link["id"]) . '/accepted">Accept Link</a><br>';
                     echo '<a href="' . site_url("links/updateStatus/" . $link["id"]) . '/rejected">Reject Link</a><br>';
                     echo '<a href="' . site_url("links/updateStatus/" . $link["id"]) . '/inactive">Inactive Link</a></td>';
+                    echo '<td><a href="' . site_url("links/edit/" . $link["id"]) . '">Edit Link</a></td>';
                     echo '<td><a href="' . site_url("links/delete/" . $link["id"]) . '">Delete Link</a></td>';
                 echo '</tr>';
             }

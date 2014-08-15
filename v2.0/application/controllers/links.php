@@ -9,8 +9,6 @@ class Links extends CI_Controller {
     }
 
     function index($filter) {
-        $cat['categories'] = $this->getCategories();
-
         $data['allLinks'] = $this->getLinks($filter);
         $data['header'] = $filter;
 
@@ -22,7 +20,7 @@ class Links extends CI_Controller {
 
         $this->load->view('layout/header');
         $this->load->view('layout/navbar');
-        $this->load->view('admin/addlink', $cat);
+        $this->load->view('admin/addlink', $data);
         $this->load->view('admin/links', $data);
         $this->load->view('layout/footer');
     }
@@ -54,17 +52,9 @@ class Links extends CI_Controller {
      * Create a new link in the database
      */
     function newLink() {
-        $groupList = "";
         $groups = $this->input->post('groups');
-        if($groups[0] != "") {
-            foreach($groups as $group) {
-                if(strlen($groupList) == 0) {
-                    $groupList = $group . " ";
-                } else {
-                    $groupList = $groupList . " " . $group;
-                }
-            }
-        }
+
+        $groupList = $this->stringifyGroups($groups);
 
         $data['url'] = $this->input->post('url');
         $data['name'] = $this->input->post('name');
@@ -78,6 +68,44 @@ class Links extends CI_Controller {
         redirect('links/index/all', $data);
     }
 
+    function stringifyGroups($groups){
+        $groupList = "";
+        if($groups[0] != "") {
+            foreach($groups as $group) {
+                if(strlen($groupList) == 0) {
+                    $groupList = $group . " ";
+                } else {
+                    $groupList = $groupList . " " . $group;
+                }
+            }
+        }
+        return $groupList;
+    }
+
+    function updatelink() {
+        $original = $this->input->post('original');
+        $groups = $this->input->post('groups');
+        $originalGroups = $this->stringifyGroups($groups);
+
+        $updated['url'] = $this->getNewValue($original['url'], $this->input->post('url'));
+        $updated['name'] = $this->getNewValue($original['name'], $this->input->post('name'));
+        $updated['status'] = $this->getNewValue($original['status'], $this->input->post('status'));
+        $updated['groups'] = $this->getNewValue($original['groups'], $originalGroups);
+        $updated['image'] = $this->getNewValue($original['image'], $this->input->post('image'));
+        $updated['description'] = $this->getNewValue($original['description'], $this->input->post('description'));
+
+        $this->link_model->update_link_information($original['id'], $updated);
+        redirect('links/edit/' . $original['id']);
+    }
+
+    function getNewValue($orig, $form) {
+        if($form !== "") {
+            return $form;
+        } else {
+            return $orig;
+        }
+    }
+
     function delete($id) {
         $this->link_model->delete_link($id);
         redirect('links/index/all');
@@ -86,6 +114,17 @@ class Links extends CI_Controller {
     function updateStatus($id, $newStatus) {
         $this->link_model->update_status($id, ucfirst($newStatus));
         redirect('links/index/all');
+    }
+
+    function edit($id) {
+        $links = $this->link_model->get_link_details($id);
+        $data['link'] = $links[0];
+        $data['categories'] = $this->getCategories();
+
+        $this->load->view('layout/header');
+        $this->load->view('layout/navbar');
+        $this->load->view('admin/editlink', $data);
+        $this->load->view('layout/footer');
     }
 
 }
