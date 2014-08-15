@@ -53,5 +53,9 @@ class Link_model extends CI_Model {
         return $data;
     }
 
+    function delete_link($id) {
+        $this->db->delete('links', array('id' => $id));
+    }
+
 }
 ?>

@@ -11,6 +11,7 @@
             foreach($allLinks as $link) {
                 echo '<tr>';
                     echo '<td>' . $link['id'] . '<td>';
+                    echo '<td><img class="linkdisplay" src="' . $link['image'] . '"></td>';
                     echo '<td>' . $link['name'] . '<br>';
                         echo '<a href="' . $link['url'] . '" target="_blank">' . $link['url'] . '</a><br>';
                         $groupsCombined = $link['groups'];
@@ -22,7 +23,8 @@
                         }
                     echo '</td>';
                     echo '<td>' . $link['description'] . '</td>';
-                    echo '<td><img class="linkdisplay" src="' . $link['image'] . '"></td>';
+                    echo '<td>' . $link['status'] . '</td>';
+                    echo '<td><a href="' . site_url("links/setDelete/" . $link["id"]) . '">Delete Link</a>';
                 echo '</tr>';
             }
         ?>

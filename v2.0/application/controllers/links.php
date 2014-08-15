@@ -64,4 +64,9 @@ class Links extends CI_Controller {
         return $data;
     }
 
+    function setDelete($id) {
+        $this->link_model->delete_link($id);
+        redirect('links/index');
+    }
+
 }
