@@ -57,5 +57,11 @@ class Link_model extends CI_Model {
         $this->db->delete('links', array('id' => $id));
     }
 
+    function update_status($id, $newStatus) {
+        $data = array('status' => $newStatus);
+        $this->db->where('id', $id);
+        $this->db->update('links', $data);
+    }
+
 }
 ?>

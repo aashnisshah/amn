@@ -50,6 +50,7 @@ class Links extends CI_Controller {
         $data['groups'] = $groupList;
         $data['image'] = $this->input->post('image');
         $data['description'] = $this->input->post('description');
+        $data['status'] = "Pending";
         $this->link_model->add_new_link($data);
         $data['status'] = "success";
 
@@ -66,6 +67,21 @@ class Links extends CI_Controller {
 
     function setDelete($id) {
         $this->link_model->delete_link($id);
+        redirect('links/index');
+    }
+
+    function updateStatusAccepted($id) {
+        $this->link_model->update_status($id, "Accepted");
+        redirect('links/index');
+    }
+
+    function updateStatusRejected($id) {
+        $this->link_model->update_status($id, "Rejected");
+        redirect('links/index');
+    }
+
+    function updateStatusInactive($id) {
+        $this->link_model->update_status($id, "Inactive");
         redirect('links/index');
     }
 
