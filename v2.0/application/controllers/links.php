@@ -8,15 +8,13 @@ class Links extends CI_Controller {
         $this->load->model('categories_model', '', TRUE);
     }
 
-    function index() {
-        $categories = $this->categories_model->get_all_categories();
-        foreach ($categories as $cat) {
-            $catArray[$cat['id']] = $cat['name'];
-        }
-        $cat['categories'] = $catArray;
+    function index($filter) {
+        $cat['categories'] = $this->getCategories();
 
-        $data = $this->viewLinks();
-        $data['categories'] = $catArray;
+        $data['allLinks'] = $this->getLinks($filter);
+        $data['header'] = $filter;
+
+        $data['categories'] = $this->getCategories();
 
         if(isset($status)) {
             $data['status'] = $status;
@@ -27,6 +25,29 @@ class Links extends CI_Controller {
         $this->load->view('admin/addlink', $cat);
         $this->load->view('admin/links', $data);
         $this->load->view('layout/footer');
+    }
+
+    /**
+     * Get the list of categories and their names
+     */
+    function getCategories() {
+        $categories = $this->categories_model->get_all_categories();
+        foreach ($categories as $cat) {
+            $catArray[$cat['id']] = $cat['name'];
+        }
+        return $catArray;
+    }
+
+    /**
+     * Get the list of links
+     */
+    function getLinks($filter) {
+        if($filter === "all") {
+            $links = $this->link_model->get_all_links();
+        } else {
+            $links = $this->link_model->get_status_filtered_links($filter);
+        }
+        return $links;
     }
 
     /**
@@ -54,35 +75,17 @@ class Links extends CI_Controller {
         $this->link_model->add_new_link($data);
         $data['status'] = "success";
 
-        redirect('links/index', $data);
+        redirect('links/index/all', $data);
     }
 
-    function viewLinks() {
-        $data['allLinks'] = $this->link_model->get_all_links();
-        $data['accepted'] = $this->link_model->get_accepted_links();
-        $data['pending'] = $this->link_model->get_pending_links();
-        $data['rejected'] = $this->link_model->get_rejected_links();
-        return $data;
-    }
-
-    function setDelete($id) {
+    function delete($id) {
         $this->link_model->delete_link($id);
-        redirect('links/index');
+        redirect('links/index/all');
     }
 
-    function updateStatusAccepted($id) {
-        $this->link_model->update_status($id, "Accepted");
-        redirect('links/index');
-    }
-
-    function updateStatusRejected($id) {
-        $this->link_model->update_status($id, "Rejected");
-        redirect('links/index');
-    }
-
-    function updateStatusInactive($id) {
-        $this->link_model->update_status($id, "Inactive");
-        redirect('links/index');
+    function updateStatus($id, $newStatus) {
+        $this->link_model->update_status($id, ucfirst($newStatus));
+        redirect('links/index/all');
     }
 
 }

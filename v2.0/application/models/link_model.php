@@ -27,36 +27,24 @@ class Link_model extends CI_Model {
     }
 
     /**
-     * Get all accepted links from the database.
+     * Get a filtered set of links
      */
-    function get_accepted_links() {
-        $query = $this->db->get_where('links',array('status' => 'accepted'));
+    function get_status_filtered_links($statusFilter) {
+        $query = $this->db->get_where('links',array('status' => $statusFilter));
         $data = $query->result_array();
         return $data;
     }
 
     /**
-     * Get all rejected links from the database.
+     * Delete the link with the provided id
      */
-    function get_rejected_links() {
-        $query = $this->db->get_where('links',array('status' => 'rejected'));
-        $data = $query->result_array();
-        return $data;
-    }
-
-    /**
-     * Get all pending links from the database.
-     */
-    function get_pending_links() {
-        $query = $this->db->get_where('links',array('status' => 'pending'));
-        $data = $query->result_array();
-        return $data;
-    }
-
     function delete_link($id) {
         $this->db->delete('links', array('id' => $id));
     }
 
+    /**
+     * Update the status of the link with $id to the $newStatus
+     */
     function update_status($id, $newStatus) {
         $data = array('status' => $newStatus);
         $this->db->where('id', $id);

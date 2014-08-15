@@ -6,7 +6,7 @@
         <a href="../admin/info">Admin Information</a>
     </li>
     <li>
-        <a href="../links/index">Link Management</a>
+        <a href="../links/index/all">Link Management</a>
     </li>
     <li>
         <a href="../categories/index">Categories Management</a>
