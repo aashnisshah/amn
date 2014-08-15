@@ -16,6 +16,7 @@ class Links extends CI_Controller {
         $cat['categories'] = $catArray;
 
         $data = $this->viewLinks();
+        $data['categories'] = $catArray;
 
         if(isset($status)) {
             $data['status'] = $status;

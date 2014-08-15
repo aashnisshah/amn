@@ -16,7 +16,9 @@
                         $groupsCombined = $link['groups'];
                         $groupsSplit = explode(" ", $groupsCombined);
                         foreach($groupsSplit as $group) {
-                            echo '<span class="label label-info">' . $group . '</span> ';
+                            if($group != "") {
+                                echo '<span class="label label-info">' . $categories[$group] . '</span> ';
+                            }
                         }
                     echo '</td>';
                     echo '<td>' . $link['description'] . '</td>';
