@@ -6,6 +6,13 @@
   max-width: 90%;
 }
 
+.middle-width{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 70%;
+}
+
 .loginform {
     margin-left: auto;
     margin-right: auto;
@@ -34,4 +41,8 @@
 
 .margin-right{
     margin-right:8px;
+}
+
+.margin-bottom{
+    margin-bottom:8px;
 }
