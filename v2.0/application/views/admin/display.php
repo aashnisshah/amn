@@ -9,7 +9,7 @@
 <div id="display" class="newlink">
     <?php
         $attributes = array('class' => 'form-horizontal');
-        echo form_open('display/generatecode', $attributes);
+        echo form_open('display/generateCode', $attributes);
     ?>
         <div class="form-group btn-group col-sm-12" data-toggle="buttons">
             <div class="col-sm-3">
@@ -17,10 +17,10 @@
             </div>
             <div class="col-sm-7">
                 <label class="btn btn-primary active margin-right margin-bottom">
-                    <input type="radio" name="options" id="show" checked> All Links
+                    <input type="radio" name="show" id="show" value="all" checked> All Links
                 </label>
                 <label class="btn btn-primary margin-right margin-bottom">
-                    <input type="radio" name="options" id="show"> Filtered By Categories
+                    <input type="radio" name="show" id="show" value="cat"> Filtered By Categories
                 </label>
             </div>
         </div>
@@ -32,30 +32,30 @@
                 <?php
                     foreach($categories as $cat) {
                         echo '<label class="btn btn-primary active margin-right margin-bottom">';
-                        echo '<input type="checkbox" name="options" id="cat"> ' . $cat;
+                        echo '<input type="checkbox" name="cat" id="cat" value="'. $cat .'"> ' . $cat;
                         echo '</label>';
                     }
 
                 ?>
             </div>
         </div>
-        <div class="btn-group form-group col-sm-12" data-toggle="buttons">
+        <div class="btn-group form-group" data-toggle="buttons">
             <div class="col-sm-3">
                 <label for="order" class="control-label pull-right">Order: </label>
             </div>
             <div class="col-sm-7">
                 <label class="btn btn-primary active margin-right margin-bottom">
-                    <input type="radio" name="options" id="order" checked> As Submitted
+                    <input type="radio" name="order" id="order" value="sub" checked> As Submitted
                 </label>
                 <label class="btn btn-primary margin-right margin-bottom">
-                    <input type="radio" name="options" id="order"> Alphabetized
+                    <input type="radio" name="order" id="order" value="alph"> Alphabetized
                 </label>
                 <label class="btn btn-primary margin-right margin-bottom">
-                    <input type="radio" name="options" id="order"> Randomly
+                    <input type="radio" name="order" id="order" value="rand"> Randomly
                 </label>
             </div>
         </div>
-        <div class="form-group col-sm-12">
+        <div class="form-group">
             <div class="col-sm-3">
                 <label for="number" class="control-label pull-right">Number of Links: </label>
             </div>

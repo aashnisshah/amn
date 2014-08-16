@@ -69,5 +69,14 @@ class Link_model extends CI_Model {
         return $data;
     }
 
+    /**
+     * Get links based on the provided query
+     */
+    function get_query($query) {
+        $queryString = $this->db->query($query);
+        $result = $queryString->result_array();
+        return $result;
+    }
+
 }
 ?>
