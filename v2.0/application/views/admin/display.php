@@ -45,13 +45,13 @@
             </div>
             <div class="col-sm-7">
                 <label class="btn btn-primary active margin-right margin-bottom">
-                    <input type="radio" name="options" id="show" checked> As Submitted
+                    <input type="radio" name="options" id="order" checked> As Submitted
                 </label>
                 <label class="btn btn-primary margin-right margin-bottom">
-                    <input type="radio" name="options" id="show"> Alphabetized
+                    <input type="radio" name="options" id="order"> Alphabetized
                 </label>
                 <label class="btn btn-primary margin-right margin-bottom">
-                    <input type="radio" name="options" id="show"> Randomly
+                    <input type="radio" name="options" id="order"> Randomly
                 </label>
             </div>
         </div>
