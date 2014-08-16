@@ -8,12 +8,21 @@ class Categories extends CI_Controller {
     }
 
     function index() {
+        $this->isLoggedIn();
         $data['categories'] = $this->categories_model->get_all_categories();
         $this->load->view('layout/header');
         $this->load->view('layout/navbar');
         $this->load->view('admin/addcategories', $data);
         $this->load->view('admin/categories', $data);
         $this->load->view('layout/footer');
+    }
+
+    function isLoggedIn() {
+        if($this->session->userdata('logged_in')) {
+                return true;
+        } else {
+            redirect('login');
+        }
     }
 
     /**
@@ -41,6 +50,7 @@ class Categories extends CI_Controller {
     }
 
     function edit($id) {
+        $this->isLoggedIn();
         $category = $this->categories_model->get_category_details($id);
         $data['category'] = $category[0];
 

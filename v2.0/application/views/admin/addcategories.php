@@ -2,7 +2,7 @@
 
 <button id="addLinkButton" class="btn btn-info btn-lg" type="button">Add A New Category</button>
 
-<div id="addNewLink" class="newlink">
+<div id="addNewLink" class="newlink defaultHide">
     <?php
         $attributes = array('class' => 'form-horizontal');
         echo form_open('categories/newCategory', $attributes);

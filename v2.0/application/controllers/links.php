@@ -9,6 +9,7 @@ class Links extends CI_Controller {
     }
 
     function index($filter) {
+        $this->isLoggedIn();
         $data['allLinks'] = $this->getLinks($filter);
         $data['header'] = $filter;
 
@@ -22,7 +23,16 @@ class Links extends CI_Controller {
         $this->load->view('layout/navbar');
         $this->load->view('admin/addlink', $data);
         $this->load->view('admin/links', $data);
+        $this->load->view('admin/linkstable', $data);
         $this->load->view('layout/footer');
+    }
+
+    function isLoggedIn() {
+        if($this->session->userdata('logged_in')) {
+                return true;
+        } else {
+            redirect('login');
+        }
     }
 
     /**
@@ -117,6 +127,7 @@ class Links extends CI_Controller {
     }
 
     function edit($id) {
+        $this->isLoggedIn();
         $links = $this->link_model->get_link_details($id);
         $data['link'] = $links[0];
         $data['categories'] = $this->getCategories();

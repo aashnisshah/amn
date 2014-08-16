@@ -1,12 +1,37 @@
-Please Login To Continue!
+<br>
+
+<h3>Please Login To Continue!</h3>
 
 <?php
-    echo validation_errors();
-    echo form_open('verifylogin');
-    echo form_label("Username: ");
-    echo form_input("username");
-    echo form_label("Password: ");
-    echo form_password("password");
-    echo form_submit("","Login");
-    echo form_close();
+    if(isset($this->session->userdata['loginfail'])){
+        echo '<h4>The password or username you entered was incorrect.</h4>';
+    }
 ?>
+
+<div id="loginform">
+    <?php
+        $attributes = array('class' => 'form-horizontal');
+        echo form_open('verifylogin', $attributes);
+        echo validation_errors();
+    ?>
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">Username: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="username">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Password: </label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" name="password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="">
+                <button type="submit" class="btn btn-success">Login</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br>

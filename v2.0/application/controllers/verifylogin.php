@@ -17,8 +17,7 @@ class Verifylogin extends CI_Controller {
         if($this->form_validation->run() == FALSE) {
             $this->load->view('login/loginform');
         } else {
-            redirect('home/index', 'refresh');
-            // echo 'redirect';
+            $this->check_database($this->input->post('username'), $this->input->post('password'));
         }
     }
 
@@ -29,15 +28,16 @@ class Verifylogin extends CI_Controller {
         if($result) {
             $sess_array = array();
             foreach($result as $row) {
-                $sess_array = array('id' => $row->id, 'username' => $row->username);
-                $this->session->set_userdata('logged_in', $sess_array);
+                $this->session->set_userdata('logged_in', TRUE);
                 $this->session->set_userdata('id', $row->id);
                 $this->session->set_userdata('username', $row->username);
             }
-        return TRUE;
+            $this->session->set_userdata('loginfail', false);
+            redirect('home/index', 'refresh');
         } else {
             $this->form_validation->set_message('check_database', 'Invalid username or password');
-            return FALSE;
+            $this->session->set_userdata('loginfail', true);
+            redirect('login');
         }
     }
 

@@ -12,6 +12,15 @@ class Admin extends CI_Controller {
         echo $name;
     }
 
+    function isLoggedIn() {
+        if(isset($this->session->userdata('logged_in') &&
+            $this->session->userdata('logged_in') == true)) {
+                return true;
+        } else {
+            redirect('login');
+        }
+    }
+
     /**
      * Get and display information about the admin of this account
      */
