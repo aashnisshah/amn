@@ -62,19 +62,17 @@ class Display extends CI_Controller {
             $query .= ' LIMIT '.$number.'';
         }
 
-        $links = $this->link_model->get_query($query);
+        echo $query;
 
-        $linksOutput = "<ul>";
+        $code = 'php $show="' . $show . '"; ';
+        $code .= '$cat="' . $cat . '"; ';
+        $code .= '$order="' . $order . '"; ';
+        $code .= '$number="' . $number . '"; ';
+        $code .= 'include(\'' . $_SERVER['PHP_SELF'] . '\'); ';
 
-        foreach($links as $link) {
-            $linksOutput .= "<li class=\"missinglink\" id=" . $link['id'] . ">";
-            $linksOutput .= "<a href=\"" . $link['url'] . "\">";
-            $linksOutput .= $link['name'] . "</a></li>";
-        }
+        echo $code;
+        echo 'hello';
 
-        $linksOutput .= "</ul>";
-
-        echo $linksOutput;
     }
 
 }
