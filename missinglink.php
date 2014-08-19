@@ -12,9 +12,8 @@
     <body>
 
     <div class="container ourcenter">
-
         <div id="addNewLink" class="newlink" display="none">
-            <form action="vermili.php" method="post" accept-charset="utf-8" class="form-horizontal">        <div class="form-group">
+            <form action="links/newExternalLink" method="post" accept-charset="utf-8" class="form-horizontal">        <div class="form-group">
                 <div class="form-group">
                     <label for="url" class="col-sm-2 control-label">Link URL: </label>
                     <div class="col-sm-10">
@@ -42,7 +41,7 @@
                 <div class="form-group">
                     <div class="">
                         <input type="hidden" name="vermili" value="external" />
-                        <button type="submit" class="btn btn-success">Add New Link</button>
+                        <button type="submit" class="btn btn-success">Submit New Link</button>
                     </div>
                 </div>
             </form>
