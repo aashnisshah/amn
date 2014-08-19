@@ -13,7 +13,7 @@ class Admin extends CI_Controller {
     }
 
     function isLoggedIn() {
-        if(isset($this->session->userdata('logged_in') &&
+        if($this->session->userdata('logged_in' != null &&
             $this->session->userdata('logged_in') == true)) {
                 return true;
         } else {
