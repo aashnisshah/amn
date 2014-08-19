@@ -43,35 +43,23 @@ class Display extends CI_Controller {
         $order = $this->input->post('order');
         $number = $this->input->post('number');
 
-        $query = "";
-
-        if($show == "all") {
-            $query = "SELECT * FROM links WHERE status=\"Accepted\"";
-        } else {
-            // TODO: Figure out how to search for categories specifically
-            // $query = "SELECT * FROM links WHERE status=\"Accepted\" AND WHERE `groups` LIKE '%$cat%'";
-        }
-
-        if($order == "alph") {
-            $query .= ' ORDER BY name';
-        } else if ($order == "rand") {
-            $query .= ' ORDER BY RAND()';
-        }
-
-        if($number != 0) {
-            $query .= ' LIMIT '.$number.'';
-        }
-
-        echo $query;
-
-        $code = 'php $show="' . $show . '"; ';
+        $code = '&lt;?php ';
+        $code .= '$show="' . $show . '"; ';
         $code .= '$cat="' . $cat . '"; ';
         $code .= '$order="' . $order . '"; ';
         $code .= '$number="' . $number . '"; ';
-        $code .= 'include(\'' . $_SERVER['PHP_SELF'] . '\'); ';
+        $code .= 'include(\'' . $_SERVER['PHP_SELF'] . '\');';
+        $code .= ' ?&gt;';
 
-        echo $code;
-        echo 'hello';
+        $data['code'] = $code;
+
+        $data['categories'] = $this->getCategories();
+        $this->load->view('layout/header');
+        $this->load->view('layout/navbar');
+        $this->load->view('admin/displayInstructions');
+        $this->load->view('admin/displayCode', $data);
+        $this->load->view('admin/display', $data);
+        $this->load->view('layout/footer');
 
     }
 
