@@ -62,10 +62,10 @@ class Links extends CI_Controller {
      * Create a new link in the database
      */
     function newLink() {
+        //TODO: Verify input
+
         $groups = $this->input->post('groups');
-
         $groupList = $this->stringifyGroups($groups);
-
         $data['url'] = $this->input->post('url');
         $data['name'] = $this->input->post('name');
         $data['groups'] = $groupList;
@@ -76,6 +76,26 @@ class Links extends CI_Controller {
         $data['status'] = "success";
 
         redirect('links/index/all', $data);
+    }
+
+    function newExternalLink() {
+        if(isset($_POST['vermili']) && $_POST['vermili'] == "external") {
+            // TODO: Verify input
+            $data['url'] = $_POST['url'];
+            $data['name'] = $_POST['name'];
+            $data['groups'] = "";
+            $data['image'] = $_POST['image'];
+            $data['description'] = $_POST['description'];
+            $data['status'] = "Pending";
+            $this->link_model->add_new_link($data);
+            $data['status'] = "success";
+
+            echo "<script type=text/javascript>";
+            echo "location.href='../success.php'</script>";
+        } else {
+            echo "<script type=text/javascript>";
+            echo "location.href='../error.php'</script>";
+        }
     }
 
     function stringifyGroups($groups){
