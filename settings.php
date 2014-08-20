@@ -3,4 +3,4 @@
     $hostname = 'localhost';
     $username = 'root';
     $password = 'root';
-    $database = 'amn';
+    $database = 'missinglink';

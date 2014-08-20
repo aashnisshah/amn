@@ -106,5 +106,13 @@ class Admin_model extends CI_Model {
 			return false;
 		}
 	}
+
+	function table_exists() {
+		include "settings.php";
+		$exist = $this->db->table_exists('admin_info');
+		// $exist = $this->db->query($query);
+		// echo $this->db->error_message();
+		return $exist;
+	}
 }
 ?>

@@ -31,6 +31,7 @@ class Home extends CI_Controller {
      */
     function getCategories() {
         $categories = $this->categories_model->get_all_categories();
+        $catArray = array();
         foreach ($categories as $cat) {
             $catArray[$cat['id']] = $cat['name'];
         }

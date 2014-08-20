@@ -8,15 +8,15 @@ class Login extends CI_Controller {
     }
 
     function index() {
-        if($this->admin_model->admin_exists()) {
+        if(!$this->admin_model->table_exists()) {
+            echo "<script type=\"text/javascript\">setTimeout(function () {";
+            echo "window.location.href= '" . site_url() . "config.php';";
+            echo "},0); </script>";
+        } else {
             $this->load->view('layout/header');
             $this->load->view('layout/navbar');
             $this->load->view('login/loginform');
             $this->load->view('layout/footer');
-        } else {
-            echo "<script type=\"text/javascript\">setTimeout(function () {";
-            echo "window.location.href= '" . site_url() . "config.php';";
-            echo "},0); </script>";
         }
     }
 
