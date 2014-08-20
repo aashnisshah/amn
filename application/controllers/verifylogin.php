@@ -12,19 +12,17 @@ class Verifylogin extends CI_Controller {
         $this->form_validation->set_rules('username', 'Username',
                 'trim|required|xss_clean');
         $this->form_validation->set_rules('password', 'Password',
-                'trim|required|css_clean|callback_check_database');
+                'trim|required|css_clean');
 
         if($this->form_validation->run() == FALSE) {
-            $this->load->view('login/loginform');
+            redirect('login');
         } else {
             $this->check_database($this->input->post('username'), $this->input->post('password'));
         }
     }
 
-    function check_database($password) {
-        $username = $this->input->post('username');
+    function check_database($username, $password) {
         $result = $this->admin_model->login($username, $password);
-        // console($result);
         if($result) {
             $sess_array = array();
             foreach($result as $row) {

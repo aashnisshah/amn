@@ -2,7 +2,7 @@
 
     if(isset($code)) {
 ?>
-        <h4>Your Codes:</h4>
+        <h4>Codes to Display Your Links</h4>
 
         <div class="middle-width">
             <p>Based on your specifications, we have generated the following code.

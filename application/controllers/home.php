@@ -9,10 +9,6 @@ class Home extends CI_Controller {
         $this->load->model('categories_model', '', TRUE);
     }
 
-    function hello() {
-        echo 'hello';
-    }
-
     function index() {
         if($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');

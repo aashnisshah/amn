@@ -71,15 +71,37 @@ class Admin_model extends CI_Model {
 
 	/* creating a query to connect to the database */
 	function login($username, $password) {
+		$propass = MD5(SHA1($password));
 		$this->db->from('admin_login');
 		$this->db->where('username', $username);
-		$this->db->where('password', MD5($password));
+		$this->db->where('password', $propass);
 		$this->db->limit(1);
 
 		// process the query response
 		$query = $this->db->get();
 		if($query->num_rows()==1){
 			return $query->result();
+		} else {
+			return false;
+		}
+	}
+
+	function create_admin($data) {
+		$password = MD5(SHA1($data['password']));
+		$this->db->insert("admin_login", array('username' => $data['username'],
+														'password' => $password));
+		$this->db->insert("admin_info", array('id' => $this->db->insert_id(),
+												'name' => $data['name'],
+												'email' => $data['email'],
+												'website' => $data['website']));
+	}
+
+	function admin_exists() {
+		$this->db->from('admin_login');
+
+		$query = $this->db->get();
+		if($query->num_rows()>=1){
+			return true;
 		} else {
 			return false;
 		}

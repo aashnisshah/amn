@@ -14,6 +14,7 @@ class Display extends CI_Controller {
         $this->load->view('layout/header');
         $this->load->view('layout/navbar');
         $this->load->view('admin/displayInstructions');
+        $this->load->view('admin/displayCode');
         $this->load->view('admin/display', $data);
         $this->load->view('layout/footer');
     }
@@ -48,7 +49,7 @@ class Display extends CI_Controller {
         $code .= '$cat="' . $cat . '"; ';
         $code .= '$order="' . $order . '"; ';
         $code .= '$number="' . $number . '"; ';
-        $code .= 'include(\'' . $_SERVER['PHP_SELF'] . '\');';
+        $code .= 'include \'' . site_url() . 'display.php\';';
         $code .= ' ?&gt;';
 
         $data['code'] = $code;

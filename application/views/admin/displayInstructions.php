@@ -2,6 +2,22 @@
 
 <hr>
 
+<h4>Code to Display the External Link Form</h4>
+    <p>This code allows you to create a form that your site visitors can use to
+        submit links to your site. Copy the code below and paste it on any PHP
+        page within this server.</p>
+<?php
+    echo '<pre>';
+    $externalcode = '&lt;?php ';
+    $externalcode .= 'include \'' . site_url() . 'missinglink.php\';';
+    $externalcode .= ' ?&gt;';
+    echo $externalcode;
+    echo '</pre>';
+
+?>
+
+<hr>
+
 <div class="middle-width">
     <p>Select the applicable choices in the form below, then select "generate code",
     and you will be provided with a code that you can place anywhere on your

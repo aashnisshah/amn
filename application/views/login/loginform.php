@@ -5,6 +5,7 @@
 <?php
     if(isset($this->session->userdata['loginfail'])){
         echo '<h4>The password or username you entered was incorrect.</h4>';
+        $this->session->unset_userdata('loginfail');
     }
 ?>
 
