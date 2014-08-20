@@ -1,3 +1,11 @@
+<?php
+
+    if(count($allLinks) < 1) {
+        echo "<p>There are currently no links to list.";
+    } else {
+
+?>
+
 <table class="table table-condensed">
 
     <th>
@@ -37,3 +45,7 @@
         }
     ?>
 </table>
+
+<?php
+    }
+?>

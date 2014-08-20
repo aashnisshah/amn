@@ -25,6 +25,7 @@
                 <input type="text" class="form-control" name="name" placeholder="">
             </div>
         </div>
+        <?php if(count($categories) > 0) { ?>
         <div class="form-group">
             <label for="groups" class="col-sm-2 control-label">Groups: </label>
             <div class="col-sm-10">
@@ -33,6 +34,7 @@
                 ?>
             </div>
         </div>
+        <?php } ?>
         <div class="form-group">
             <label for="image" class="col-sm-2 control-label">Image: </label>
             <div class="col-sm-10">
@@ -47,7 +49,7 @@
         </div>
         <div class="form-group">
             <div class="">
-                <button type="submit" class="btn btn-success">Add New Link</button>
+                <button type="submit" class="btn btn-success">Submit New Link</button>
             </div>
         </div>
     </form>

@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
             <div class="">
-                <button type="submit" class="btn btn-success">Add</button>
+                <button type="submit" class="btn btn-success">Create New Category</button>
             </div>
         </div>
     </form>

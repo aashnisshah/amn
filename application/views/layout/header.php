@@ -18,8 +18,8 @@
         <script type="text/javascript" src="<?php echo base_url();?>js/flatui-radio.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.tagsinput.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>js/jquery.placeholder.js"></script>
-        <!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url();?>js/ml.js"></script-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url();?>js/ml.js"></script>
     </head>
 
     <body>

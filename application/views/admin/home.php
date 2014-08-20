@@ -2,8 +2,6 @@
 
 <?php
 
-    echo $this->session->userdata['username'];
-    print_r($this->session->userdata['logged_in']);
-    echo $this->session->userdata['id'];
+    // things can eventually go here?
 
 ?>

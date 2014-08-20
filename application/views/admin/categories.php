@@ -6,6 +6,12 @@
 
 <h2>Categories</h2>
 
+<?php
+    if(count($categories) < 1 ) {
+        echo "There are currently no categories to display. Create a category by selecting the button above.";
+    } else {
+?>
+
 <table class="table table-condensed">
 
     <th>
@@ -28,3 +34,5 @@
         }
     ?>
 </table>
+
+<?php } ?>
