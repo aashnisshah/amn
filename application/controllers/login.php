@@ -2,11 +2,22 @@
 
 class Login extends CI_Controller {
 
+    function __construct() {
+        parent::__construct();
+        $this->load->model('admin_model','',TRUE);
+    }
+
     function index() {
-        $this->load->view('layout/header');
-        $this->load->view('layout/navbar');
-        $this->load->view('login/loginform');
-        $this->load->view('layout/footer');
+        if($this->admin_model->admin_exists()) {
+            $this->load->view('layout/header');
+            $this->load->view('layout/navbar');
+            $this->load->view('login/loginform');
+            $this->load->view('layout/footer');
+        } else {
+            echo "<script type=\"text/javascript\">setTimeout(function () {";
+            echo "window.location.href= '" . site_url() . "config.php';";
+            echo "},0); </script>";
+        }
     }
 
 }
