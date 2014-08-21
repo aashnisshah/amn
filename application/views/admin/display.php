@@ -24,6 +24,7 @@
                 </label>
             </div>
         </div>
+        <?php if(count($categories) > 0){ ?>
         <div class="form-group btn-group col-sm-12">
             <div class="col-sm-3">
                 <label for="categories" class="control-label pull-right">Categories: </label>
@@ -39,6 +40,7 @@
                 ?>
             </div>
         </div>
+        <?php } ?>
         <div class="btn-group form-group" data-toggle="buttons">
             <div class="col-sm-3">
                 <label for="order" class="control-label pull-right">Order: </label>

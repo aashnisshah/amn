@@ -7,9 +7,10 @@
         submit links to your site. Copy the code below and paste it on any PHP
         page within this server.</p>
 <?php
+    include 'settings.php';
     echo '<pre>';
     $externalcode = '&lt;?php ';
-    $externalcode .= 'include \'' . site_url() . 'missinglink.php\';';
+    $externalcode .= 'include \'' . $_SERVER['DOCUMENT_ROOT']  . '/' . $tmlpath . '/missinglink.php\';';
     $externalcode .= ' ?&gt;';
     echo $externalcode;
     echo '</pre>';

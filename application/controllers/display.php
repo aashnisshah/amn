@@ -32,6 +32,7 @@ class Display extends CI_Controller {
      */
     function getCategories() {
         $categories = $this->categories_model->get_all_categories();
+        $catArray = array();
         foreach ($categories as $cat) {
             $catArray[$cat['id']] = $cat['name'];
         }
@@ -53,26 +54,29 @@ class Display extends CI_Controller {
             $order = $this->input->post('order');
             $number = $this->input->post('number');
 
+            include 'settings.php';
+
             $code = '&lt;?php ';
             $code .= '$show="' . $show . '"; ';
             $code .= '$cat="' . $cat . '"; ';
             $code .= '$order="' . $order . '"; ';
             $code .= '$number="' . $number . '"; ';
-            $code .= 'include \'' . site_url() . 'display.php\';';
+            $code .= 'include \'' . $_SERVER['DOCUMENT_ROOT']  . '/' . $tmlpath . '/display.php\';';
             $code .= ' ?&gt;';
 
             $data['code'] = $code;
         } else {
-            $data['code'] = "There was an error generating your code."
+            $data['code'] = "There was an error generating your code.";
         }
 
-            $data['categories'] = $this->getCategories();
-            $this->load->view('layout/header');
-            $this->load->view('layout/navbar');
-            $this->load->view('admin/displayInstructions');
-            $this->load->view('admin/displayCode', $data);
-            $this->load->view('admin/display', $data);
-            $this->load->view('layout/footer');
+        $data['categories'] = $this->getCategories();
+        $this->load->view('layout/header');
+        $this->load->view('layout/navbar');
+        $this->load->view('admin/displayInstructions');
+        $this->load->view('admin/displayCode', $data);
+        $this->load->view('admin/display', $data);
+        $this->load->view('layout/footer');
+
 
     }
 
