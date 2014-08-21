@@ -30,7 +30,7 @@
     $linksOutput = "<ul>";
 
     while($links = mysqli_fetch_array($mysql_query)) {
-        $linksOutput .= "<li class=\"missinglink\" id=" . $links['id'] . ">";
+        $linksOutput .= "<li class=\"missinglink\" id=ml" . $links['id'] . ">";
         $linksOutput .= "<a href=\"" . $links['url'] . "\">";
         $linksOutput .= $links['name'] . "</a></li>";
     }
