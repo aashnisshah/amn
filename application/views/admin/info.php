@@ -1,5 +1,13 @@
 <h3>Personal Information</h3>
 
+<?php
+    if(isset($message)) {
+        echo $message . '<br>';
+    }
+
+    echo validation_errors();
+?>
+
 <div id="adminInfo">
         <?php
             $attributes = array('class' => 'form-horizontal');
