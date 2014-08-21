@@ -63,36 +63,59 @@ class Links extends CI_Controller {
      * Create a new link in the database
      */
     function newLink() {
-        //TODO: Verify input
+        // validate input
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('url', 'URL for the Link', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('name', 'Link Name', 'trim|xss_clean');
+        $this->form_validation->set_rules('groups', 'Groups Link Belongs To', 'xss_clean');
+        $this->form_validation->set_rules('image', 'Image URL', 'trim|xss_clean');
+        $this->form_validation->set_rules('description', 'Link Description', 'trim|xss_clean');
 
-        $groups = $this->input->post('groups');
-        $groupList = $this->stringifyGroups($groups);
-        $data['url'] = $this->input->post('url');
-        $data['name'] = $this->input->post('name');
-        $data['groups'] = $groupList;
-        $data['image'] = $this->input->post('image');
-        $data['description'] = $this->input->post('description');
-        $data['status'] = "Pending";
-        $this->link_model->add_new_link($data);
-        $data['status'] = "success";
-
-        redirect('links/index/all', $data);
-    }
-
-    function newExternalLink() {
-        if(isset($_POST['vermili']) && $_POST['vermili'] == "external") {
-            // TODO: Verify input
-            $data['url'] = $_POST['url'];
-            $data['name'] = $_POST['name'];
-            $data['groups'] = "";
-            $data['image'] = $_POST['image'];
-            $data['description'] = $_POST['description'];
+        if($this->form_validation->run() == true) {
+            $groups = $this->input->post('groups');
+            $groupList = $this->stringifyGroups($groups);
+            $data['url'] = $this->input->post('url');
+            $data['name'] = $this->input->post('name');
+            $data['groups'] = $groupList;
+            $data['image'] = $this->input->post('image');
+            $data['description'] = $this->input->post('description');
             $data['status'] = "Pending";
             $this->link_model->add_new_link($data);
             $data['status'] = "success";
 
-            echo "<script type=text/javascript>";
-            echo "location.href='../success.php'</script>";
+            redirect('links/index/all', $data);
+        } else {
+            $data['status'] = "error";
+            redirect('links/index/all', $data);
+        }
+    }
+
+    function newExternalLink() {
+        if(isset($_POST['vermili']) && $_POST['vermili'] == "external") {
+            // validate input
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('url', 'URL for the Link', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('name', 'Link Name', 'trim|xss_clean');
+            $this->form_validation->set_rules('groups', 'Groups Link Belongs To', 'xss_clean');
+            $this->form_validation->set_rules('image', 'Image URL', 'trim|xss_clean');
+            $this->form_validation->set_rules('description', 'Link Description', 'trim|xss_clean');
+
+            if($this->form_validation->run() == true) {
+                $data['url'] = $_POST['url'];
+                $data['name'] = $_POST['name'];
+                $data['groups'] = "";
+                $data['image'] = $_POST['image'];
+                $data['description'] = $_POST['description'];
+                $data['status'] = "Pending";
+                $this->link_model->add_new_link($data);
+                $data['status'] = "success";
+
+                echo "<script type=text/javascript>";
+                echo "location.href='../success.php'</script>";
+            } else {
+                echo "<script type=text/javascript>";
+                echo "location.href='../error.php'</script>";
+            }
         } else {
             echo "<script type=text/javascript>";
             echo "location.href='../error.php'</script>";
@@ -114,19 +137,32 @@ class Links extends CI_Controller {
     }
 
     function updatelink() {
-        $original = $this->input->post('original');
-        $groups = $this->input->post('groups');
-        $originalGroups = $this->stringifyGroups($groups);
+        // validate input
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('url', 'URL for the Link', 'trim|xss_clean');
+        $this->form_validation->set_rules('name', 'Link Name', 'trim|xss_clean');
+        $this->form_validation->set_rules('status', 'Link Status', 'trim|xss_clean');
+        $this->form_validation->set_rules('groups', 'Groups Link Belongs To', 'xss_clean');
+        $this->form_validation->set_rules('image', 'Image URL', 'trim|xss_clean');
+        $this->form_validation->set_rules('description', 'Link Description', 'trim|xss_clean');
 
-        $updated['url'] = $this->getNewValue($original['url'], $this->input->post('url'));
-        $updated['name'] = $this->getNewValue($original['name'], $this->input->post('name'));
-        $updated['status'] = $this->getNewValue($original['status'], $this->input->post('status'));
-        $updated['groups'] = $this->getNewValue($original['groups'], $originalGroups);
-        $updated['image'] = $this->getNewValue($original['image'], $this->input->post('image'));
-        $updated['description'] = $this->getNewValue($original['description'], $this->input->post('description'));
+        if($this->form_validation->run() == true) {
+            $original = $this->input->post('original');
+            $groups = $this->input->post('groups');
+            $originalGroups = $this->stringifyGroups($groups);
 
-        $this->link_model->update_link_information($original['id'], $updated);
-        redirect('links/edit/' . $original['id']);
+            $updated['url'] = $this->getNewValue($original['url'], $this->input->post('url'));
+            $updated['name'] = $this->getNewValue($original['name'], $this->input->post('name'));
+            $updated['status'] = $this->getNewValue($original['status'], $this->input->post('status'));
+            $updated['groups'] = $this->getNewValue($original['groups'], $originalGroups);
+            $updated['image'] = $this->getNewValue($original['image'], $this->input->post('image'));
+            $updated['description'] = $this->getNewValue($original['description'], $this->input->post('description'));
+
+            $this->link_model->update_link_information($original['id'], $updated);
+            redirect('links/edit/' . $original['id']);
+        } else {
+            redirect('links/edit/' . $original['id']);
+        }
     }
 
     function getNewValue($orig, $form) {

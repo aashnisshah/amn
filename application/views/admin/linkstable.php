@@ -29,7 +29,7 @@
                     $groupsCombined = $link['groups'];
                     $groupsSplit = explode(" ", $groupsCombined);
                     foreach($groupsSplit as $group) {
-                        if($group != "") {
+                        if($group != "" && isset($categories[$group])) {
                             echo '<span class="label label-info">' . $categories[$group] . '</span> ';
                         }
                     }

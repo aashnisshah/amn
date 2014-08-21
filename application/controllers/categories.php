@@ -29,12 +29,21 @@ class Categories extends CI_Controller {
      * Create a new link in the database
      */
     function newCategory() {
-        $newCategoryEntry['name'] = $this->input->post('name');
-        $newCategoryEntry['description'] = $this->input->post('description');
-        $this->categories_model->add_new_category($newCategoryEntry);
-        $data['categories'] = $this->categories_model->get_all_categories();
-        $this->load->view('admin/categories', $data);
-        redirect('categories/index');
+        // validate input
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Category Name', 'trim|required|xss_clean|');
+        $this->form_validation->set_rules('description', 'Category Description', 'trim|xss_clean');
+
+        if($this->form_validation->run() == true) {
+            $newCategoryEntry['name'] = $this->input->post('name');
+            $newCategoryEntry['description'] = $this->input->post('description');
+            $this->categories_model->add_new_category($newCategoryEntry);
+            $data['categories'] = $this->categories_model->get_all_categories();
+            $this->load->view('admin/categories', $data);
+            redirect('categories/index');
+        } else {
+            redirect('categories/index');
+        }
     }
 
     function delete($id) {
@@ -43,10 +52,19 @@ class Categories extends CI_Controller {
     }
 
     function updatecategory() {
-        $updated['name'] = $this->input->post('name');
-        $updated['description'] = $this->input->post('description');
-        $this->categories_model->update_category($this->input->post('id'), $updated);
-        redirect('categories/edit/' . $this->input->post('id'));
+        // validate input
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Category Name', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('description', 'Category Description', 'trim|xss_clean');
+
+        if($this->form_validation->run() == true) {
+            $updated['name'] = $this->input->post('name');
+            $updated['description'] = $this->input->post('description');
+            $this->categories_model->update_category($this->input->post('id'), $updated);
+            redirect('categories/edit/' . $this->input->post('id'));
+        } else {
+            redirect('categories/edit/' . $this->inpud->post('id'));
+        }
     }
 
     function edit($id) {

@@ -26,6 +26,9 @@ class Admin extends CI_Controller {
     function info() {
         if($this->isLoggedIn()) {
             $data['admin_info'] = $this->admin_model->get_all_admin_info($this->session->userdata['id']);
+            if(isset($message)) {
+                $data['message'] = $message;
+            }
             $this->load->view('layout/header');
             $this->load->view('layout/navbar');
             $this->load->view('admin/info', $data);

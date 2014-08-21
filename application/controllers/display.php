@@ -39,28 +39,40 @@ class Display extends CI_Controller {
     }
 
     function generateCode() {
-        $show = $this->input->post('show');
-        $cat = $this->input->post('cat');
-        $order = $this->input->post('order');
-        $number = $this->input->post('number');
 
-        $code = '&lt;?php ';
-        $code .= '$show="' . $show . '"; ';
-        $code .= '$cat="' . $cat . '"; ';
-        $code .= '$order="' . $order . '"; ';
-        $code .= '$number="' . $number . '"; ';
-        $code .= 'include \'' . site_url() . 'display.php\';';
-        $code .= ' ?&gt;';
+        // validate input
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('show', 'Show Settings', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('cat', 'Categories to Show', 'xss_clean');
+        $this->form_validation->set_rules('order', 'Order To Display Links', 'trim|xss_clean');
+        $this->form_validation->set_rules('number', 'Number of Links to Display', 'trim|numeric|xss_clean');
 
-        $data['code'] = $code;
+        if($this->form_validation->run() == true) {
+            $show = $this->input->post('show');
+            $cat = $this->input->post('cat');
+            $order = $this->input->post('order');
+            $number = $this->input->post('number');
 
-        $data['categories'] = $this->getCategories();
-        $this->load->view('layout/header');
-        $this->load->view('layout/navbar');
-        $this->load->view('admin/displayInstructions');
-        $this->load->view('admin/displayCode', $data);
-        $this->load->view('admin/display', $data);
-        $this->load->view('layout/footer');
+            $code = '&lt;?php ';
+            $code .= '$show="' . $show . '"; ';
+            $code .= '$cat="' . $cat . '"; ';
+            $code .= '$order="' . $order . '"; ';
+            $code .= '$number="' . $number . '"; ';
+            $code .= 'include \'' . site_url() . 'display.php\';';
+            $code .= ' ?&gt;';
+
+            $data['code'] = $code;
+        } else {
+            $data['code'] = "There was an error generating your code."
+        }
+
+            $data['categories'] = $this->getCategories();
+            $this->load->view('layout/header');
+            $this->load->view('layout/navbar');
+            $this->load->view('admin/displayInstructions');
+            $this->load->view('admin/displayCode', $data);
+            $this->load->view('admin/display', $data);
+            $this->load->view('layout/footer');
 
     }
 
